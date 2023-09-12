@@ -38,4 +38,5 @@ app.get("/", async (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`server running on ${PORT}`));
+module.exports=app;
 //if i am going to host this on github pages what changes do i need to make
