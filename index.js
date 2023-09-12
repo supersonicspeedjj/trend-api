@@ -8,7 +8,7 @@ const articles = [];
 const imgsrc = [];
 
 
-app.get("/", async (req, res) => {
+app.get("https://trend-api-git-master-supersonicspeedjj.vercel.app", async (req, res) => {
   try {
     
     const response = await axios.get(
