@@ -1,4 +1,4 @@
-
+const PORT = process.env.PORT;
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
@@ -12,12 +12,12 @@ app.get("/", async (req, res) => {
   try {
     
     const response = await axios.get(
-      "https://www.imdb.com/search/title/?count=100&title_type=feature,tv_series"
+      "https://editorial.rottentomatoes.com/guide/popular-tv-shows/"
     );
     const html = response.data;
     const $ = cheerio.load(html);
 
-    $('h3.lister-item-header').each(function(){
+    $("div.article_movie_title").each(function () {
       // Find the <a> tag inside the current <h3> element
       const anchor = $(this).find("a");
 
@@ -32,7 +32,7 @@ app.get("/", async (req, res) => {
       });
     });
     
-    console.log(articles);
+    
     res.json(articles);
   } catch (error) {
     console.error(error);
@@ -40,4 +40,5 @@ app.get("/", async (req, res) => {
   }
 });
 
-
+app.listen(PORT, () => console.log(`server running on ${PORT}`));
+//if i am going to host this on github pages what changes do i need to make
