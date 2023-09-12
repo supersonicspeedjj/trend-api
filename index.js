@@ -1,4 +1,4 @@
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;;
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
@@ -9,7 +9,7 @@ const imgsrc = [];
 
 
 app.get("/", async (req, res) => {
-  try {
+
     
     const response = await axios.get(
       "https://editorial.rottentomatoes.com/guide/popular-tv-shows/"
@@ -34,10 +34,7 @@ app.get("/", async (req, res) => {
     
     
     res.json(articles);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal server error" });
-  }
+  
 });
 
 app.listen(PORT, () => console.log(`server running on ${PORT}`));
