@@ -32,7 +32,7 @@ app.get("https://trend-api-git-master-supersonicspeedjj.vercel.app", async (req,
       });
     });
     
-    
+    console.log(articles);
     res.json(articles);
   } catch (error) {
     console.error(error);
