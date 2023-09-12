@@ -8,7 +8,7 @@ const articles = [];
 const imgsrc = [];
 
 
-app.get("/", async (req, res) => {
+app.get("/imdb", async (req, res) => {
   try {
     
     const response = await axios.get(
