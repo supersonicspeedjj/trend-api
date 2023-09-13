@@ -2,11 +2,11 @@ const PORT = process.env.PORT || 8000;;
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
-
+const cors = require('cors');
 const app = express();
 const articles = [];
 const imgsrc = [];
-
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.get("/", async (req, res) => {
 
