@@ -32,8 +32,9 @@ app.get("/", async (req, res) => {
       });
     });
     
+    const first25Articles = articles.slice(0, 25);
     
-    res.json(articles);
+    res.json(first25Articles);
   
 });
 
