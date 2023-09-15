@@ -62,7 +62,7 @@ app.get("/movies", async (req, res) => {
   });
   
   const first25Articles = articles.slice(0, 25);
-  
+  console.log(first25Articles)
   res.json(first25Articles);
 
 });
