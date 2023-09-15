@@ -5,7 +5,7 @@ const cheerio = require("cheerio");
 const cors = require('cors');
 const app = express();
 const articles = [];
-const imgsrc = [];
+const movies = [];
 app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.get("/", async (req, res) => {
@@ -56,14 +56,14 @@ app.get("/movies", async (req, res) => {
    // const img = anchor.find("img").attr("src");
 
     // Do something with the text and href
-    articles.push({
+    movies.push({
       text,
     });
   });
   
-  const first25Articles = articles.slice(0, 25);
-  console.log(first25Articles)
-  res.json(first25Articles);
+  const first25movies = movies.slice(0, 25);
+ // console.log(first25Articles)
+  res.json(first25movies);
 
 });
 app.listen(PORT, () => console.log(`server running on ${PORT}`));
