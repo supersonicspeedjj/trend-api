@@ -97,7 +97,7 @@ app.get("/youtube/:title/:year", async  (req, res) => {
       }
     }
   
-    return null; // Return null if "v=" or "&" is not found
+    return url; // Return null if "v=" or "&" is not found
   }
 res.json(extractVideoID(youtube[0]));
 
