@@ -6,6 +6,7 @@ const cors = require('cors');
 const app = express();
 const articles = [];
 const movies = [];
+const youtube = [];
 app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.get("/", async (req, res) => {
@@ -67,9 +68,39 @@ app.get("/movies", async (req, res) => {
 
 });
 
-app.get("/youtube/:userId", (req, res) => {
-  const userId = req.params.userId;
-  res.json(userId);
+app.get("/youtube/:title/:year", async  (req, res) => {
+  const title = req.params.title;
+  const year = req.params.year;
+  const response = await axios.get(
+    `www.youtube.com/results?search_query=${title} ${year} official trailer`
+  );
+  const html = response.data;
+  const $ = cheerio.load(html);
+
+  const anchor = $("h3.title-and-badge style-scope ytd-video-renderer").first().find("a");
+
+  if (anchor.length > 0) {
+    const link = anchor.href();
+    youtube.push(link);
+  }
+
+  function extractVideoID(url) {
+    const startIndex = url.indexOf("v=");
+  
+    if (startIndex !== -1) {
+      startIndex += 2; // Move past "v="
+      const endIndex = url.indexOf("&", startIndex);
+      if (endIndex !== -1) {
+        return url.substring(startIndex, endIndex);
+      } else {
+        return url.substring(startIndex);
+      }
+    }
+  
+    return null; // Return null if "v=" or "&" is not found
+  }
+res.json(extractVideoID(youtube[0]));
+
 });
 
 
