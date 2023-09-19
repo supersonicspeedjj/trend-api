@@ -70,19 +70,19 @@ app.get("/movies", async (req, res) => {
 
 app.get("/youtube/:title", async  (req, res) => {
   const title = req.params.title;
-  const year = req.params.year;
+ 
   const response = await axios.get(
     `www.youtube.com/results?search_query=${title}+official+trailer`
   );
   const html = response.data;
   const $ = cheerio.load(html);
 
-  const anchor = $("h3.title-and-badge style-scope ytd-video-renderer").first().find("a");
+  const anchor = $("div.title-wrapper").first().find("a");
 
-  if (anchor.length > 0) {
+ 
     const link = anchor.href();
-    youtube.push(link);
-  }
+    youtube.push({link});
+ 
 
   function extractVideoID(url) {
     const startIndex = url.indexOf("v=");
@@ -99,7 +99,7 @@ app.get("/youtube/:title", async  (req, res) => {
   
     return url; // Return null if "v=" or "&" is not found
   }
-res.json(extractVideoID(youtube[0]));
+res.json(extractVideoID(youtube));
 
 });
 
