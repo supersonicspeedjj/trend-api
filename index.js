@@ -72,7 +72,7 @@ app.get("/youtube/:title", async  (req, res) => {
   const title = req.params.title;
  
   const response = await axios.get(
-    `www.youtube.com/results?search_query=${title}+official+trailer`
+    `https://www.youtube.com/results?search_query=${title}+official+trailer`
   );
   const html = response.data;
   const $ = cheerio.load(html);
