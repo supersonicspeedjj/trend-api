@@ -84,22 +84,22 @@ app.get("/youtube/:title/:year", async  (req, res) => {
     youtube.push(link);
   }
 
-  function extractVideoID(url) {
-    const startIndex = url.indexOf("v=");
+  // function extractVideoID(url) {
+  //   const startIndex = url.indexOf("v=");
   
-    if (startIndex !== -1) {
-      startIndex += 2; // Move past "v="
-      const endIndex = url.indexOf("&", startIndex);
-      if (endIndex !== -1) {
-        return url.substring(startIndex, endIndex);
-      } else {
-        return url.substring(startIndex);
-      }
-    }
+  //   if (startIndex !== -1) {
+  //     startIndex += 2; // Move past "v="
+  //     const endIndex = url.indexOf('&', startIndex);
+  //     if (endIndex !== -1) {
+  //       return url.substring(startIndex, endIndex);
+  //     } else {
+  //       return url.substring(startIndex);
+  //     }
+  //   }
   
-    return url; // Return null if "v=" or "&" is not found
-  }
-res.json(extractVideoID(youtube[0]));
+  //   return url; // Return null if "v=" or "&" is not found
+  // }
+res.json(youtube[0]);
 
 });
 
