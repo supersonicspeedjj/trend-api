@@ -66,6 +66,13 @@ app.get("/movies", async (req, res) => {
   res.json(first25movies);
 
 });
+
+app.get("/youtube/:userId", (req, res) => {
+  const userId = req.params.userId;
+  res.json(userId);
+});
+
+
 app.listen(PORT, () => console.log(`server running on ${PORT}`));
 module.exports=app;
 //if i am going to host this on github pages what changes do i need to make
