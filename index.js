@@ -19,15 +19,15 @@ app.get("/", async (req, res) => {
     const $ = cheerio.load(html);
 
     $("div.article_movie_title").each(function () {
-      // Find the <a> tag inside the current <h3> element
+      
       const anchor = $(this).find("a");
 
-      // Get the text and href attributes of the <a> tag
+      
       const text = anchor.text();
      // const href = anchor.attr("href");
      // const img = anchor.find("img").attr("src");
 
-      // Do something with the text and href
+      
       articles.push({
         text,
       });
@@ -48,15 +48,15 @@ app.get("/movies", async (req, res) => {
   const $ = cheerio.load(html);
 
   $("div.article_movie_title").each(function () {
-    // Find the <a> tag inside the current <h3> element
+   
     const anchor = $(this).find("a");
 
-    // Get the text and href attributes of the <a> tag
+   
     const text = anchor.text();
    // const href = anchor.attr("href");
    // const img = anchor.find("img").attr("src");
 
-    // Do something with the text and href
+    
     movies.push({
       text,
     });
@@ -73,4 +73,3 @@ app.get("/movies", async (req, res) => {
 
 app.listen(PORT, () => console.log(`server running on ${PORT}`));
 module.exports=app;
-//if i am going to host this on github pages what changes do i need to make
