@@ -7,7 +7,7 @@ const app = express();
 const articles = [];
 const movies = [];
 const youtube = [];
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors());
 
 app.get("/", async (req, res) => {
 
