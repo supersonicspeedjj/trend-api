@@ -7,7 +7,13 @@ const app = express();
 const articles = [];
 const movies = [];
 const youtube = [];
-app.use(cors());
+const corsOptions = {
+  origin: "*", // Allow requests from any origin
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allow these HTTP methods
+  optionsSuccessStatus: 204, // Respond with 204 (No Content) for preflight requests
+};
+
+app.use(cors(corsOptions));
 
 app.get("/", async (req, res) => {
 
